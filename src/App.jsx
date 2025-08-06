@@ -1,7 +1,13 @@
-import React from 'react';
+import CartContainer from './components/CartContainer';
+import Navbar from './components/Navbar';
 
 const App = () => {
-  return <h2>Redux Toolkit</h2>;
+  return (
+    <main>
+      <Navbar />
+      <CartContainer />
+    </main>
+  );
 };
 
 export default App;
