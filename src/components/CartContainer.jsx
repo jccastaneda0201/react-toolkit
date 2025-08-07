@@ -1,8 +1,15 @@
-import { clearCart } from '../features/cart/CartSlice';
 import CartItem from './CartItem';
 import { useDispatch, useSelector } from 'react-redux';
+import { openModal } from '../features/modal/ModalSlice';
 
 const CartContainer = () => {
+  //formattedCost currency euro
+  const formatCost = (cost) => {
+    return new Intl.NumberFormat('es-ES', {
+      style: 'currency',
+      currency: 'EUR',
+    }).format(cost);
+  };
   const dispatch = useDispatch();
   const { cartItems, total, amount } = useSelector((store) => store.cart);
   if (amount < 1) {
@@ -29,10 +36,10 @@ const CartContainer = () => {
         <hr />
         <div className="cart-total">
           <h4>
-            Total <span>${total}</span>
+            Total <span>{formatCost(total)}</span>
           </h4>
         </div>
-        <button className="btn clear-btn" onClick={() => dispatch(clearCart())}>
+        <button className="btn clear-btn" onClick={() => dispatch(openModal())}>
           Clear Cart
         </button>
       </footer>
